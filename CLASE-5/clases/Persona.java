@@ -3,7 +3,7 @@ package clases;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Persona {
+public abstract class Persona implements ManejoDeFechas {
     // Atributos privados
     private String nombre;
     private LocalDate fechaNacimiento;
@@ -48,7 +48,7 @@ public class Persona {
     // contructor con email
     public Persona(String nombre, String fechaNacimiento, String email) {
         this.nombre = nombre;
-        this.fechaNacimiento = ManejoDeFechas.convertirStringALocalDate(fechaNacimiento);
+        this.fechaNacimiento = convertirStringALocalDate(fechaNacimiento);
         this.edad = calcularEdad();
         this.email = email;
         this.id = Persona.incrementId++;
@@ -68,7 +68,7 @@ public class Persona {
     }
 
     public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = ManejoDeFechas.convertirStringALocalDate(fechaNacimiento);
+        this.fechaNacimiento = convertirStringALocalDate(fechaNacimiento);
         this.edad = calcularEdad();
     }
 
@@ -110,6 +110,8 @@ public class Persona {
         int edadCalculada = diferencia.getYears();
         return edadCalculada;
     }
+
+    public abstract String verCalificaciones();
 
     @Override
     public String toString() {

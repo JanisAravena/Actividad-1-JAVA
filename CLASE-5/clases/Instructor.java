@@ -2,7 +2,7 @@ package clases;
 
 import java.util.ArrayList;
 
-public class Instructor extends Persona {
+public class Instructor extends Persona implements Calculos {
     private ArrayList<Estudiante> alumnos;
     private ArrayList<String> bootcamps;
 
@@ -44,4 +44,21 @@ public class Instructor extends Persona {
         return "Instructor: " + super.toString() + " | Alumnos: " + alumnos.size() + " | Bootcamps: " + bootcamps;
     }
 
+    @Override
+    public String verCalificaciones() {
+        String str = "Estudiantes: \n";
+        for (int i = 0; i < alumnos.size(); i++) {
+            str += alumnos.get(i).verCalificaciones() + "\n";
+        }
+        return str;
+    }
+
+    @Override
+    public double calcularPromedioCalificaciones() {
+        double suma = 0;
+        for (int i = 0; i < alumnos.size(); i++) {
+            suma += alumnos.get(i).calcularPromedioCalificaciones();
+        }
+        return suma / alumnos.size();
+    }
 }
